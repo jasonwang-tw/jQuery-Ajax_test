@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="css/style.css">
+    <title>jQuery Ajax</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+    <div id="result"></div>
+    <div id="result2"></div>
+    <div id="result2_1"></div>
+    <div id="result3"></div>
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <script>
+
+        $.ajax({
+            type: "GET",
+            url: "https://jcodewp.com/wp-json/wp/v2/pages",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                var result = data[0]['id'];
+                var result2 = JSON.stringify(data);
+                var result3 = data[0]['content']['rendered'];
+
+                $("#result").text(result);
+                $("#result2").text(data);
+                $("#result2_1").text(result2);
+                $("#result3").html(result3);
+
+                console.log(data);
+            },
+            error: function (XMLHttpRequest, textStatus, errorThrown) {
+                alert(XMLHttpRequest.status);
+                alert(XMLHttpRequest.readyState);
+                alert(textStatus);
+            },
+        });
+
+    </script>
+</body>
+
+</html>
